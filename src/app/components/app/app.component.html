@@ -1,0 +1,17 @@
+<ion-menu [content]="content" swipeEnabled="false">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Pages</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="setRoot(StartPage)" menuClose>Start</button>
+      <button ion-item (click)="setRoot(SignInPage)" menuClose>Sign In</button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+<ion-nav [root]="rootPage" #content></ion-nav>

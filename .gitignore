@@ -1,0 +1,19 @@
+# 3rd party dependencies
+/node_modules
+/typings
+
+# destinitions
+/www
+/platforms
+/plugins
+
+# caches
+.sass-cache/
+.tscache/
+.tmp/
+
+# IDEs
+/.vscode
+~/.vscode/**/*.json
+
+.DS_Store

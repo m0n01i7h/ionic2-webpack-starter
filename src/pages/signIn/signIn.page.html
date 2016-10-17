@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sign In</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <ion-item>
+      <ion-label>Email:</ion-label>
+      <ion-input type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password:</ion-label>
+      <ion-input type="password" [(ngModel)]="password" [ngModelOptions]="{ standalone: true }"></ion-input>
+    </ion-item>
+  </form>
+  <button ion-button block (click)="signIn(email, password)">Sign In</button>
+</ion-content>

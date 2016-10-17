@@ -1,0 +1,39 @@
+@import "variables";
+@import "~ionic-angular/themes/ionic.build.default";
+@import "~ionic-angular/themes/ionic.globals.ios";
+@import "~ionic-angular/themes/ionic.globals.md";
+@import "~ionic-angular/themes/ionic.globals.wp";
+@import "~ionic-angular/themes/ionic.theme.default.ios";
+@import "~ionic-angular/themes/ionic.theme.default.md";
+@import "~ionic-angular/themes/ionic.theme.default.wp";
+
+// App Shared Sass
+// --------------------------------------------------
+// Shared Sass styles go in the app.variables.scss file
+
+.scroll-content {
+  overflow-y: auto !important;
+}
+
+.toolbar[position=bottom] {
+  flex: inherit !important;
+}
+
+.button {
+  ion-spinner {
+    &:first-child {
+      margin-right: 5px;
+    }
+    &:last-child {
+      margin-left: 5px;
+    }
+  }
+}
+
+
+.button-default {
+
+  svg * {
+    stroke: #fff;
+  }
+}
