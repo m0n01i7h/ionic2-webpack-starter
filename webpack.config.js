@@ -3,14 +3,17 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const TsConfigPathsPlugin = require("awesome-typescript-loader").TsConfigPathsPlugin;
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const DEBUG = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
-    app: path.join(__dirname, './src/main'),          // custom application
-    deps: path.join(__dirname, './src/dependencies'), // third-party dependencies
+    app: PRODUCTION
+      ? path.join(__dirname, './src/main.production')
+      : path.join(__dirname, './src/main'),
+    deps: path.join(__dirname, './src/dependencies'),
   },
   output: {
     path: path.join(__dirname, 'www'),
@@ -26,15 +29,10 @@ module.exports = {
       path.join(__dirname, 'node_modules'),
       path.join(__dirname, 'src')
     ],
-    alias: {
-      services: path.join(__dirname, 'src/services/index.ts'),
-      pages: path.join(__dirname, 'src/pages/index.ts'),
-      common: path.join(__dirname, 'src/common/index.ts'),
-    }
   },
   module: {
     loaders: [
-      { test: /\.ts$/, loader: `ts-loader` },
+      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader?keepUrl=true'] },
       { test: /\.html$/, loader: 'raw-loader' },
 
       // ---------- styles
@@ -59,6 +57,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new TsConfigPathsPlugin(),
     new webpack.DefinePlugin({
       DEBUG: DEBUG,
       PRODUCTION: PRODUCTION,

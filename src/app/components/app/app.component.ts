@@ -7,11 +7,11 @@ import { StartPage } from '../../../pages/start/start.page';
 
 
 @Component({
-  template: require('./app.component.html')
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild(Nav) private nav: Nav;
+  @ViewChild(Nav) public nav: Nav;
 
   public rootPage = StartPage;
 

@@ -11,6 +11,7 @@
 .sass-cache/
 .tscache/
 .tmp/
+ngfactory/
 
 # IDEs
 /.vscode

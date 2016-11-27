@@ -25,6 +25,13 @@ gulp.task('tslint', () =>
     .pipe(tslint.report('prose'))
 );
 
+gulp.task('ngc', () => gulp.src(path.join(__dirname, 'ngfactory'))
+  .pipe(clean())
+  .pipe(shell([
+    'ngc -p aot.tsconfig.json'
+  ]))
+);
+
 gulp.task('electron', shell.task(/^win/.test(process.platform)
   ? [`${path.join(__dirname, 'node_modules/electron-prebuilt/dist/electron.exe')} ${path.join(__dirname, 'electron.js')}`]
   : /^darwin/.test(process.platform)

@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "sourceMap": true,
+    "sourceMap": false,
+    "noEmit": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
@@ -19,14 +20,12 @@
     }
   },
   "exclude": [
+    "src/main.production.ts",
     "node_modules"
   ],
   "angularCompilerOptions": {
-    "genDir": "generated",
+    "genDir": "ngfactory",
     "debug": true,
     "skipMetadataEmit": true
-  },
-  "awesomeTypescriptLoaderOptions": {
-    "useWebpackText": true
   }
 }

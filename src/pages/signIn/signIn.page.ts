@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
-  template: require('./signIn.page.html'),
+  templateUrl: './signIn.page.html',
 })
 export class SignInPage {
 
