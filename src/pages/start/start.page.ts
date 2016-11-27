@@ -7,7 +7,7 @@ import { NavController } from 'ionic-angular';
 export class StartPage {
 
   constructor(
-     private nav: NavController
+    private nav: NavController
   ) {
   }
 }

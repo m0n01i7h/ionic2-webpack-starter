@@ -26,23 +26,24 @@ module.exports = {
       path.join(__dirname, 'node_modules'),
       path.join(__dirname, 'src')
     ],
-    // alias: {
-    //   buffer: './node_modules/buffer',
-    //   process: './node_modules/process',
-    // }
+    alias: {
+      services: path.join(__dirname, 'src/services/index.ts'),
+      pages: path.join(__dirname, 'src/pages/index.ts'),
+      common: path.join(__dirname, 'src/common/index.ts'),
+    }
   },
   module: {
     loaders: [
-      { test: /\.ts$/, loader: `ts` },
-      { test: /\.html$/, loader: 'raw' },
+      { test: /\.ts$/, loader: `ts-loader` },
+      { test: /\.html$/, loader: 'raw-loader' },
 
       // ---------- styles
-      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style',
-          loader: `css!sass?includePaths[]=${path.resolve(__dirname, "./node_modules/ionicons/dist/scss")}`
+          fallbackLoader: 'style-loader',
+          loader: `css-loader!sass-loader?includePaths[]=${path.resolve(__dirname, "./node_modules/ionicons/dist/scss")}`
         })
       },
 
@@ -78,14 +79,14 @@ module.exports = {
       path.join(__dirname, 'www')
     ]),
   ].concat(PRODUCTION ? [
-    // additional pluginds for produnction environment
+    // additional plugins for production environment
     // new webpack.optimize.UglifyJsPlugin({
     //   compress: {
     //     warnings: false
     //   }
     // })
   ] : []).concat(DEBUG ? [
-    // additional pluginds for debug target
+    // additional plugins for debug target
     new webpack.SourceMapDevToolPlugin()
   ] : [])
 }

@@ -4,11 +4,21 @@
     "module": "commonjs",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": "./src",
+    "paths": {
+      "services": [
+        "services/"
+      ],
+      "pages": [
+        "pages/"
+      ],
+      "common": [
+        "common/"
+      ]
+    }
   },
   "exclude": [
-    "node_modules",
-    "src"
-  ],
-  "compileOnSave": false
+    "node_modules"
+  ]
 }

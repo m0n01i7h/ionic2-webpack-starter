@@ -1,5 +1,5 @@
 /**
- * Third Party depedencies goes here
+ * Third Party dependencies goes here
  */
 require('@angular/common');
 require('@angular/platform-browser-dynamic');

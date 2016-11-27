@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import { CommonModule } from '../common.module';
-import { ServicesModule } from '../services/services.module';
+import { CommonModule } from 'common';
+import { ServicesModule } from 'services';
 
 import { SignInPage } from './signIn/signIn.page';
 import { StartPage } from './start/start.page';
