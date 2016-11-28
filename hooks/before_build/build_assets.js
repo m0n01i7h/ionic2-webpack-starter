@@ -2,6 +2,6 @@
 
 require('shelljs/global');
 
-exec('gulp build', code => {
+exec('gulp hook:before:build', code => {
     console.log('Finished, exit code: ', code);
 });

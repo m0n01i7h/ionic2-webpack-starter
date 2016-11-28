@@ -6,11 +6,20 @@ const clean = require('gulp-clean');
 const tslint = require('gulp-tslint');
 const typings = require('gulp-typings');
 const shell = require('gulp-shell');
+const gutil = require('gulp-util');
+const runSequence = require('run-sequence');;
 
-gulp.task('build', () => gulp.src('./src/main.ts')
-  .pipe(gulpWebpack(Object.assign(require('./webpack.config')), webpack))
-  .pipe(gulp.dest('./www/'))
+gulp.task('build:prod', done => runSequence('env:prod', 'ngc', 'build', done));
+gulp.task('env:prod', () => process.env.NODE_ENV = 'production');
+
+gulp.task('hook:before:build', process.env.NODE_ENV === 'production' ? ['build:prod'] : ['build']);
+
+gulp.task('build', done => webpack(require('./webpack.config'), (err, stats) => {
+    if(err) throw new gutil.PluginError('webpack', err);
+    done();
+  })
 );
+
 gulp.task('watch', () => gulp.src('./src/main.ts')
   .pipe(gulpWebpack(Object.assign(require('./webpack.config'), { watch: true }), webpack))
   .pipe(gulp.dest('./www/'))

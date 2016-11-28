@@ -4,11 +4,11 @@
   "description": "",
   "main": "src/main.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "gulp typings",
     "build": "gulp build",
+    "build:prod": "gulp build:prod",
     "watch": "gulp watch",
-    "ngc": "gulp ngc"
+    "electron": "gulp electron"
   },
   "author": "",
   "license": "ISC",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@ionic/storage": "^1.1.2",
-    "angular2-template-loader": "^0.6.0",
+    "angular2-template-loader": "git+https://github.com/m0n01i7h/angular2-template-loader.git#ff5e3ce7d236d66978c4826ec725cc9d94c38557",
     "awesome-typescript-loader": "^3.0.0-beta.9",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
@@ -68,6 +68,7 @@
     "ionicons": "^3.0.0",
     "node-sass": "^3.6.0",
     "raw-loader": "^0.5.1",
+    "run-sequence": "^1.2.2",
     "sass-loader": "^3.2.0",
     "shelljs": "^0.7.0",
     "style-loader": "^0.13.1",

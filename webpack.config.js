@@ -79,11 +79,11 @@ module.exports = {
     ]),
   ].concat(PRODUCTION ? [
     // additional plugins for production environment
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   }
-    // })
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ] : []).concat(DEBUG ? [
     // additional plugins for debug target
     new webpack.SourceMapDevToolPlugin()

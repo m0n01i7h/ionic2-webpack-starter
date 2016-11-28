@@ -1,15 +1,12 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Nav } from 'ionic-angular';
 
-// pages
-import { SignInPage } from '../../../pages/signIn/signIn.page';
-import { StartPage } from '../../../pages/start/start.page';
-
+import { SignInPage, StartPage } from '../../../pages';
 
 @Component({
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   @ViewChild(Nav) public nav: Nav;
 
@@ -20,10 +17,6 @@ export class AppComponent implements OnInit {
 
   constructor(
   ) { }
-
-  public ngOnInit() {
-    console.log('init');
-  }
 
   public setRoot(page) {
     this.rootPage = page;
