@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav } from 'ionic-angular';
 
-import { SignInPage, StartPage } from '../../../pages';
+import { SignInPage, StartPage } from 'pages';
 
 @Component({
   templateUrl: './app.component.html'
