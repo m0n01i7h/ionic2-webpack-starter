@@ -32,7 +32,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader?keepUrl=true'] },
+      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
       { test: /\.html$/, loader: 'raw-loader' },
 
       // ---------- styles

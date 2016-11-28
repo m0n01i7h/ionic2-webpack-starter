@@ -6,14 +6,10 @@ global.__dirname = __dirname;
 
 app.on('ready', () => {
   new BrowserWindow({
-    width: 1280,
-    height: 720
+    width: 360,
+    height: 640
   }).loadURL(`file://${__dirname}/www/index.html`)
 });
-
-// app.on('browser-window-created', function (e, window) {
-//   window.setMenu(null);
-// });
 
 app.on('window-all-closed', () => {
   if (process.platform != 'darwin') {
