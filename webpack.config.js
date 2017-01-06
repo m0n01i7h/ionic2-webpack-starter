@@ -1,12 +1,44 @@
 const webpack = require('webpack');
 const path = require('path');
+const colors = require('colors/safe');
+const jsonfile = require('jsonfile');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const TsConfigPathsPlugin = require("awesome-typescript-loader").TsConfigPathsPlugin;
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const DEBUG = process.env.NODE_ENV !== 'production';
+const pkg = jsonfile.readFileSync('./package.json');
+
+const definitions = {
+  DEBUG: DEBUG,
+  PRODUCTION: PRODUCTION,
+  VERSION_DEF: JSON.stringify(pkg.version || '0.0.0'),
+};
+
+console.log(colors.green(`Build running for environment: `), colors.magenta(process.env.NODE_ENV));
+
+console.log(colors.green(`
+WEBPACK RUNNING WITH FOLLOWING DEFINITIONS:
+`));
+
+Object
+  .keys(definitions)
+  .forEach(key => console.log(colors.green(key), '=', colors.magenta(definitions[key])))
+  ;
+
+// Add empty line after definitions
+console.log(`
+`);
+
+if (PRODUCTION) {
+  console.log(colors.green(`
+=================================
+WEBPACK RUNNING IN PRODUCTION MODE
+=================================
+`));
+}
 
 module.exports = {
   entry: {
@@ -58,11 +90,7 @@ module.exports = {
   },
   plugins: [
     new TsConfigPathsPlugin(),
-    new webpack.DefinePlugin({
-      DEBUG: DEBUG,
-      PRODUCTION: PRODUCTION,
-      BUILD_TIME: new Date().toString()
-    }),
+    new webpack.DefinePlugin(definitions),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'deps',
       minChunks: Infinity
@@ -78,14 +106,14 @@ module.exports = {
       path.join(__dirname, 'www')
     ]),
   ].concat(PRODUCTION ? [
-    // additional plugins for production environment
+    // additional plugins for the PRODUCTION environment
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
     })
   ] : []).concat(DEBUG ? [
-    // additional plugins for debug target
+    // additional plugins for DEBUG environment
     new webpack.SourceMapDevToolPlugin()
   ] : [])
 }

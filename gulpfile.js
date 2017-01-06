@@ -15,9 +15,9 @@ gulp.task('env:prod', () => process.env.NODE_ENV = 'production');
 gulp.task('hook:before:build', process.env.NODE_ENV === 'production' ? ['build:prod'] : ['build']);
 
 gulp.task('build', done => webpack(require('./webpack.config'), (err, stats) => {
-    if(err) throw new gutil.PluginError('webpack', err);
-    done();
-  })
+  if (err) throw new gutil.PluginError('webpack', err);
+  done();
+})
 );
 
 gulp.task('watch', () => gulp.src('./src/main.ts')
@@ -26,12 +26,12 @@ gulp.task('watch', () => gulp.src('./src/main.ts')
 );
 
 gulp.task('typings', () => gulp.src("./typings.json")
-  .pipe(typings()));
+  .pipe(typings())
+);
 
-gulp.task('tslint', () =>
-  gulp.src(['src/**/*.ts'])
-    .pipe(tslint({ configuration: 'tslint.json' }))
-    .pipe(tslint.report('prose'))
+gulp.task('tslint', () => gulp.src(['src/**/*.ts'])
+  .pipe(tslint({ configuration: 'tslint.json' }))
+  .pipe(tslint.report('prose'))
 );
 
 gulp.task('ngc', () => gulp.src(path.join(__dirname, 'ngfactory'))
@@ -41,10 +41,16 @@ gulp.task('ngc', () => gulp.src(path.join(__dirname, 'ngfactory'))
   ]))
 );
 
-gulp.task('electron', shell.task(/^win/.test(process.platform)
-  ? [`${path.join(__dirname, 'node_modules/electron-prebuilt/dist/electron.exe')} ${path.join(__dirname, 'electron.js')}`]
-  : /^darwin/.test(process.platform)
-    ? [`${path.join(__dirname, 'node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron')} ${path.join(__dirname, 'electron.js')}`]
-    : [],
-    { env: { GOOGLE_API_KEY: 'YOUR_GOOGLE_API_KEY' }}
+gulp.task('electron', shell.task(
+  [
+    {
+      test: /^win/,
+      command: [`${path.join(__dirname, 'node_modules/electron-prebuilt/dist/electron.exe')} ${path.join(__dirname, 'electron.js')}`]
+    },
+    {
+      test: /^darwin/,
+      command: [`${path.join(__dirname, 'node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron')} ${path.join(__dirname, 'electron.js')}`]
+    }
+  ].find(command => command.test.test(process.platform)).command,
+  { env: { GOOGLE_API_KEY: 'YOUR_GOOGLE_API_KEY' } }
 ));

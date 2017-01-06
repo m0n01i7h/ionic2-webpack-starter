@@ -21,11 +21,6 @@
   "exclude": [
     "node_modules"
   ],
-  "angularCompilerOptions": {
-    "genDir": "generated",
-    "debug": true,
-    "skipMetadataEmit": true
-  },
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true
   }

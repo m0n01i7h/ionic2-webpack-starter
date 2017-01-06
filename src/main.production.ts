@@ -6,5 +6,5 @@ import { AppModuleNgFactory } from '../ngfactory/src/app/app.module.ngfactory';
 
 require('./styles/main.scss');
 
-platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
 enableProdMode();
+platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
