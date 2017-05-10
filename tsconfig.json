@@ -6,6 +6,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
+    "lib": [
+      "es2015",
+      "es2017",
+      "dom"
+    ],
     "paths": {
       "services": [
         "src/services/"
