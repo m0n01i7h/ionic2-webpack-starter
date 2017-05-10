@@ -14,7 +14,7 @@ const pkg = jsonfile.readFileSync('./package.json');
 const definitions = {
   DEBUG: DEBUG,
   PRODUCTION: PRODUCTION,
-  VERSION_DEF: JSON.stringify(pkg.version || '0.0.0'),
+  VERSION_DEF: JSON.stringify(pkg.version || '0.0.0')
 };
 
 console.log(colors.green(`Build running for environment: `), colors.magenta(process.env.NODE_ENV));
@@ -45,7 +45,7 @@ module.exports = {
     app: PRODUCTION
       ? path.join(__dirname, './src/main.production')
       : path.join(__dirname, './src/main'),
-    deps: path.join(__dirname, './src/dependencies'),
+    deps: path.join(__dirname, './src/dependencies')
   },
   output: {
     path: path.join(__dirname, 'www'),
@@ -60,12 +60,12 @@ module.exports = {
     modules: [
       path.join(__dirname, 'node_modules'),
       path.join(__dirname, 'src')
-    ],
+    ]
   },
   module: {
     loaders: [
       { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
-      { test: /\.html$/, loader: 'raw-loader' },
+      { test: /\.html$/, loaders: ['raw-loader'] },
 
       // ---------- styles
       { test: /\.css$/, loader: 'style-loader!css-loader' },
@@ -85,7 +85,7 @@ module.exports = {
 
       // ----------- images
       { test: /\.svg($|\?)/, loader: 'file-loader?prefix=font/&name=img/[name]-[hash].[ext]' },
-      { test: /\.png($|\?)/, loader: 'file-loader?prefix=font/&name=img/[name]-[hash].[ext]' },
+      { test: /\.png($|\?)/, loader: 'file-loader?prefix=font/&name=img/[name]-[hash].[ext]' }
     ]
   },
   plugins: [
@@ -100,7 +100,7 @@ module.exports = {
       allChunks: true
     }),
     new CopyWebpackPlugin([
-      { from: './src/index.html', to: 'index.html' },
+      { from: './src/index.html', to: 'index.html' }
     ]),
     new CleanWebpackPlugin([
       path.join(__dirname, 'www')
@@ -116,4 +116,4 @@ module.exports = {
     // additional plugins for DEBUG environment
     new webpack.SourceMapDevToolPlugin()
   ] : [])
-}
+};

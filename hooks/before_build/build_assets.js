@@ -2,6 +2,13 @@
 
 require('shelljs/global');
 
-exec('gulp hook:before:build', code => {
+const buildNgc = 'npm run ngc';
+const buildApp = 'npm run build';
+
+const command = process.env.NODE_ENV === 'production'
+    ? `${buildNgc} && ${buildApp}`
+    : buildApp;
+
+exec(command, code => {
     console.log('Finished, exit code: ', code);
 });

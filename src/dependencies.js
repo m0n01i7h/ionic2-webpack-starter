@@ -10,8 +10,10 @@ require('reflect-metadata');
 require('zone.js');
 
 require('@angular/common');
-require('@angular/platform-browser-dynamic');
 require('@angular/forms');
 require('@angular/core');
 require('ionic-angular');
-require('ionic-native');
+
+if (DEBUG) {
+  require('@angular/platform-browser-dynamic');
+}
