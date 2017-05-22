@@ -6,6 +6,7 @@
 /www
 /platforms
 /plugins
+/coverage
 
 # caches
 .sass-cache/
